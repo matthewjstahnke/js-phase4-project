@@ -23,8 +23,20 @@ function blogsLinkEvent() {
     });
 }
 
+function mazeChaseLinkEvent() {
+    mazeChaseLink().addEventListener("click", function (e){
+        e.preventDefault();
+        console.log(this);
+        MazeChase.renderGrid();
+        console.log(grid);
+        MazeChase.createBoard(grid);
+
+    })
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     Blog.getBlogs();
     formLinkEvent();
     blogsLinkEvent();
+    mazeChaseLinkEvent();
 });
