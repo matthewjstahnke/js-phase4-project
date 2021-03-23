@@ -46,7 +46,6 @@ const blogsLink = () => document.getElementById("blogs-link");
 
 /** Maze Chase Nodes **/
 const mazeChaseLink = () => document.getElementById("maze-chase-link");
-const score = () => document.getElementById("score");
+//const score = () => document.getElementById("score");
 //const grid = () => document.getElementById("grid");
-var grid 
-var squares = []
+
