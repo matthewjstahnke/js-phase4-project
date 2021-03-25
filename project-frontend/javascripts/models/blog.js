@@ -15,6 +15,7 @@ class Blog {
         let p = document.createElement("p");
         let deleteLink = document.createElement("a");
         let editLink = document.createElement("a");
+        let likeLink = document.createElement("button")
         let blogsDiv = document.getElementById("blogs")
 
         editLink.dataset.id = this.id;
@@ -25,8 +26,13 @@ class Blog {
         deleteLink.setAttribute("href", "#")
         deleteLink.innerText = "Delete"
 
+        likeLink.dataset.id = this.id
+        likeLink.setAttribute("href", "#")
+        likeLink.innerText = `Likes ${this.likes}`
+
         editLink.addEventListener("click", Blog.editBlog);
         deleteLink.addEventListener("click", Blog.deleteBlog)
+        likeLink.addEventListener("click", Blog.likeBlog)
 
         h4.innerText = this.title;
         byAuthor.innerText = `By: ${this.author.name}`;
@@ -37,6 +43,7 @@ class Blog {
         div.appendChild(p);
         div.appendChild(editLink);
         div.appendChild(deleteLink);
+        div.appendChild(likeLink);
 
         blogsDiv.appendChild(div);
     }
@@ -61,6 +68,7 @@ class Blog {
         return `
         <h3>List Of Blogs</h3>
         <div id="blogs"></div>
+        <button onclick="alert('hi');">Click</button>
         `;
     }
 
@@ -182,6 +190,14 @@ class Blog {
 
         Blog.createFromCollection(data)
         Blog.renderBlogs();
+    }
+
+    static likeBlog() {
+
+        num = parseInt(likes.innerText)
+        num += 1
+        likes.innerText = num
+
     }
 
     static async deleteBlog(e) {

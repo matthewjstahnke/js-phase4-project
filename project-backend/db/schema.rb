@@ -10,22 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_044408) do
+ActiveRecord::Schema.define(version: 0) do
 
-  create_table "authors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "blogs", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id", null: false
-    t.index ["author_id"], name: "index_blogs_on_author_id"
-  end
-
-  add_foreign_key "blogs", "authors"
 end
