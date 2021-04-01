@@ -122,6 +122,7 @@ class Blog {
 
     static renderEditForm(blog) {
         resetMain();
+        hideSearchBar();
         main().innerHTML = Blog.editFormTemplate(blog);
         form().addEventListener("submit", Blog.submitEditForm);
     }
@@ -212,6 +213,7 @@ class Blog {
         })
 
         Blog.renderBlogs();
+        showSearchBar();
     }
 
     static likeBlog(e) {
