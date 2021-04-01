@@ -27,4 +27,5 @@ document.addEventListener("DOMContentLoaded", function () {
     Blog.getBlogs();
     formLinkEvent();
     blogsLinkEvent();
+    Blog.listenforKeyDown();
 });

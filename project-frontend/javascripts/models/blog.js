@@ -242,4 +242,15 @@ class Blog {
 
     }
 
+    static listenforKeyDown() {
+        inputSearch().addEventListener("keydown", this.inputFilter)
+    }
+
+    static inputFilter() {
+        const text = document.querySelector('#search').value 
+        const filtered = Blog.all.filter(blog => blog.title.includes(text))
+        document.querySelector("#blogs").innerHTML = ""
+        filtered.forEach(blog => blog.render())
+    }  
+
 }
