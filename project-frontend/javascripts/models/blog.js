@@ -211,25 +211,29 @@ class Blog {
         let likes = 0
         let id = e.target.dataset.id;
 
+        
         fetch(`http://localhost:3000/blogs/`+ id)
         .then(resource => resource.json())
         .then((data) => {
             likes = data.likes_count
-
+            
             let newLikes = likes +1
+            
+            let strongParams = {
+                blog: {
+                    likes_count: newLikes
+                }
+            }
+            Api.patch("/blogs/" + id, strongParams)
+            .then(function(data) {
+                let b = Blog.all.find((b) => b.id == data.id);
 
-            fetch(`http://localhost:3000/blogs/` + id, {
-                method: 'PATCH',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    "likes_count": newLikes                   
-                })
-            })
-            location.reload();
-            return false;           
+                let idx = Blog.all.indexOf(b);
+
+                Blog.all[idx] = new Blog(data);
+
+                Blog.renderBlogs();
+            })         
         })
 
     }
