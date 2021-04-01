@@ -1,7 +1,9 @@
 #main {
     margin: 0 auto;
 }
+    
     body {background-color: rgba(200, 198, 206, 0.849);} 
+    body { border: solid black;}
     h1 {text-align: center;}
     p {text-align: center;}
     div {text-align: center;}
