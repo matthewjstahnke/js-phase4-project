@@ -6,6 +6,7 @@ class Blog {
         this.title = attr.title;
         this.content = attr.content;
         this.author = attr.author;
+        this.likes_count = attr.likes_count;
     }
 
     render() {
@@ -16,6 +17,7 @@ class Blog {
         let deleteLink = document.createElement("a");
         let editLink = document.createElement("a");
         let blogsDiv = document.getElementById("blogs")
+        let likeLink = document.createElement("button")
 
         editLink.dataset.id = this.id;
         editLink.setAttribute("href", "#")
@@ -25,8 +27,13 @@ class Blog {
         deleteLink.setAttribute("href", "#")
         deleteLink.innerText = "Delete"
 
+        likeLink.dataset.id = this.id
+        likeLink.setAttribute("href", "#")
+        likeLink.innerText = `Likes ${this.likes_count}`
+
         editLink.addEventListener("click", Blog.editBlog);
         deleteLink.addEventListener("click", Blog.deleteBlog)
+        likeLink.addEventListener("click", Blog.likeBlog)
 
         h4.innerText = this.title;
         byAuthor.innerText = `By: ${this.author.name}`;
@@ -37,6 +44,7 @@ class Blog {
         div.appendChild(p);
         div.appendChild(editLink);
         div.appendChild(deleteLink);
+        div.appendChild(likeLink);
 
         blogsDiv.appendChild(div);
     }
@@ -198,4 +206,32 @@ class Blog {
 
         Blog.renderBlogs();
     }
+
+    static likeBlog(e) {
+        let likes = 0
+        let id = e.target.dataset.id;
+
+        fetch(`http://localhost:3000/blogs/`+ id)
+        .then(resource => resource.json())
+        .then((data) => {
+            likes = data.likes_count
+
+            let newLikes = likes +1
+
+            fetch(`http://localhost:3000/blogs/` + id, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    "likes_count": newLikes                   
+                })
+            })
+            location.reload();
+            return false;           
+        })
+
+    }
+
 }

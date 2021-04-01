@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   def update
     if @blog.update(blog_params)
-      render json: @blog, except: [:created_at, :updated_at, :author_id], include: [:author]
+      render json: @blog, except: [:created_at, :updated_at, :author_id], include: [:author] 
     else
       render json: @blog.errors, status: :unprocessable_entity
     end
@@ -48,6 +48,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title, :content, :author_attributes)
+      params.require(:blog).permit(:title, :content, :author_attributes, :likes_count)
     end
 end
