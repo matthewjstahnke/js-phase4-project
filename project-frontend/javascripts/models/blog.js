@@ -18,6 +18,7 @@ class Blog {
         let editLink = document.createElement("a");
         let blogsDiv = document.getElementById("blogs")
         let likeLink = document.createElement("button")
+        let space = document.createTextNode(" ")
 
         editLink.dataset.id = this.id;
         editLink.setAttribute("href", "#")
@@ -43,6 +44,7 @@ class Blog {
         div.appendChild(byAuthor);
         div.appendChild(p);
         div.appendChild(editLink);
+        div.appendChild(space);
         div.appendChild(deleteLink);
         div.appendChild(likeLink);
 
