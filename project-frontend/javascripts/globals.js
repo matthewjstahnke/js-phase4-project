@@ -4,6 +4,7 @@
 /** Node Getters **/
 
 const main = () => document.getElementById("main");
+const bar = () => document.getElementById("bar");
 const titleInput = () => document.getElementById("title");
 const contentInput = () => document.getElementById("content")
 const authorInput = () => document.getElementById("author")
