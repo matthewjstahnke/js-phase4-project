@@ -1,6 +1,7 @@
 class Blog < ApplicationRecord
     belongs_to :author
     has_many :likes
+    scope :blog_popular, -> {order("likes_count desc") }
 
 
     def author_attributes=(author_name)

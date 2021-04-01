@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.blog_popular
 
     render json: @blogs, except: [:created_at, :updated_at, :author_id], include: [:author]
   end
