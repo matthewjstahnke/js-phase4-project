@@ -163,6 +163,7 @@ class Blog {
             .then(function(data) {
                 Blog.create(data);
                 Blog.renderBlogs();
+                showSearchBar();
             })
     }
 
