@@ -128,7 +128,11 @@ class Blog {
         resetMain();
         main().innerHTML = Blog.blogsTemplate();
 
-        Blog.all.forEach(blog => blog.render());
+        //Blog.all.forEach(blog => blog.render());
+        const sorted = Blog.all.sort(function (a, b) {
+            return b.likes_count - a.likes_count;
+        })
+        sorted.forEach(blog => blog.render());
     }
 
     static editBlog(e) {
